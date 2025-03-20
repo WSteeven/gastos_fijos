@@ -1,5 +1,5 @@
 // services/prestamos.js
-import { supabase } from '../lib/supabase';
+import { supabase } from '../libs/supabase';
 
 // Obtener todos los préstamos
 export async function getPrestamos() {
@@ -44,4 +44,4 @@ export async function deletePrestamo(id) {
   
   if (error) throw error;
   return true;
-}x
+}

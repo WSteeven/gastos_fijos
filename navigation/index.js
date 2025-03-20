@@ -13,6 +13,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen';
 import GastosFijosScreen from '../screens/GastosFijosScreen';
 import CrearGastoScreen from '../screens/CrearGastoFijoScreen';
+import PrestamosScreen from '../screens/PrestamosScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,37 +21,41 @@ export default function Navigation() {
     const { user } = useAuth();
 
     return (
-            <Stack.Navigator>
-                {user ? (
-                    // Rutas autenticadas
-                    <>
-                        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Inicio' }} />
-                        <Stack.Screen
-                            name="GastosFijos"
-                            component={GastosFijosScreen}
-                            options={{ title: 'Gastos Fijos' }}
-                        />
-                        <Stack.Screen
-                            name="CrearGasto"
-                            component={CrearGastoScreen}
-                            options={{ title: 'Crear Gasto Fijo' }}
-                        />
-                    </>
-                ) : (
-                    // Rutas no autenticadas
-                    <>
-                        <Stack.Screen
-                            name="Login"
-                            component={LoginScreen}
-                            options={{ headerShown: false }}
-                        />
-                        <Stack.Screen
-                            name="Register"
-                            component={RegisterScreen}
-                            options={{ title: 'Registro' }}
-                        />
-                    </>
-                )}
-            </Stack.Navigator>
+        <Stack.Navigator>
+            {user ? (
+                // Rutas autenticadas
+                <>
+                    <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Inicio' }} />
+                    <Stack.Screen
+                        name="GastosFijos"
+                        component={GastosFijosScreen}
+                        options={{ title: 'Gastos Fijos' }}
+                    />
+                    <Stack.Screen
+                        name="Prestamos"
+                        component={PrestamosScreen}
+                        options={{ title: 'Préstamos entre personas' }} />
+                    <Stack.Screen
+                        name="CrearGasto"
+                        component={CrearGastoScreen}
+                        options={{ title: 'Crear Gasto Fijo' }}
+                    />
+                </>
+            ) : (
+                // Rutas no autenticadas
+                <>
+                    <Stack.Screen
+                        name="Login"
+                        component={LoginScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Register"
+                        component={RegisterScreen}
+                        options={{ title: 'Registro' }}
+                    />
+                </>
+            )}
+        </Stack.Navigator>
     );
 }

@@ -6,6 +6,7 @@ const AuthContext = createContext({});
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -82,14 +83,31 @@ export function AuthProvider({ children }) {
     }
   }
 
+  async function getAllUsers() {
+    try{
+      setLoading(true);
+      const { data: { users }, error } = await supabase.auth.admin.listUsers()
+      console.log(users)
+  if (error) throw error;
+    setUsers(data);
+    } catch (error) {
+      console.error('dio error en getAllUsers', error)
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
         user,
+        users,
         loading,
         signIn,
         signUp,
         signOut,
+        getAllUsers
       }}
     >
       {children}

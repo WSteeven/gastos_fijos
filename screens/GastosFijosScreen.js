@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { getGastosFijos, addGastoFijo, deleteGastoFijo } from '../services/gastosFijos';
-
+import { useAuth } from '../context/AuthContext';
 const GastosFijosScreen = () => {
   const [gastos, setGastos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [descripcion, setDescripcion] = useState('');
   const [monto, setMonto] = useState('');
-
+  const { user } = useAuth();
   useEffect(() => {
     loadGastos();
   }, []);
@@ -33,6 +33,7 @@ const GastosFijosScreen = () => {
         descripcion,
         monto: parseFloat(monto),
         fecha: new Date().toISOString(),
+        user_id: user.id,
       };
       
       await addGastoFijo(nuevoGasto);

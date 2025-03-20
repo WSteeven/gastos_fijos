@@ -34,9 +34,7 @@ export default function HomeScreen({ navigation }) {
         
         <TouchableOpacity 
           style={styles.menuItem}
-          onPress={() => {
-            /* Navegar a Préstamos cuando esté implementado */
-          }}
+          onPress={() =>  navigation.navigate('Prestamos')}
         >
           <View style={styles.menuIcon}>
             <Text style={styles.menuIconText}>💸</Text>

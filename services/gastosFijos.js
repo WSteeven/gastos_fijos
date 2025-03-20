@@ -1,7 +1,6 @@
 // services/gastosFijos.js
 import { supabase } from '../libs/supabase.js'
 
-
 // Obtener todos los gastos fijos
 export async function getGastosFijos() {
   const { data, error } = await supabase

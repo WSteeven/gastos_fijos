@@ -1,5 +1,5 @@
 // services/auth.js
-import { supabase } from '../lib/supabase';
+import { supabase } from '../libs/supabase';
 
 // Registrar un nuevo usuario
 export async function signUp(email, password) {
@@ -33,4 +33,10 @@ export async function signOut() {
 export async function getCurrentUser() {
   const { data: { user } } = await supabase.auth.getUser();
   return user;
+}
+
+export async function getAllUsers() {
+  const {data:{users}} = await supabase.auth.api.listUsers();
+  if (error) throw error;
+  return users;
 }
